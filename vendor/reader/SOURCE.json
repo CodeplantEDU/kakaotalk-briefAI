@@ -1,0 +1,45 @@
+{
+  "repository": "https://github.com/sanguneo/nichirin",
+  "commit": "6e7838c86064f88695d8b0b24b16b2c6a7a55b1e",
+  "source_version": "kanao 0.31.3",
+  "license": "MIT",
+  "mode": "bundled local read-only worker; current-user AppData DPAPI cache; no UI/network/login in reader",
+  "files": {
+    "backend.py": "8b069022a86176347abf16cba8eb49d4850eaad39c816c8c06a9e1b6fe53f131",
+    "kakaocommon/__init__.py": "fdb7679b7a23880965e0234958a1d3e3e6817a4d9df65e4d1f5d9e90cdf93dc3",
+    "kakaocommon/disposition.py": "8bb0e1f24aef8e2ea259085f4be22b965216ab9f000c0a40ba65522127bdaa5d",
+    "kakaocommon/wal.py": "0ada978ef2f78d179a8eba8ee0735bf02377053e0f64d7ccc55c5d53e392a0ff",
+    "kanao/__init__.py": "9603c7b115d4d8602d6cb9ecf43609f9add6bbc8e0370af10ac50882e771f8fe",
+    "kanao/cng.py": "a689d2fc10567a366f3637354f2febc20aeb416180b7fcce897871f68cece128",
+    "kanao/context.py": "13d63a549710ea48ba5da6743dcc5eec5803694d7d1cbc64e82bf2ad2ca900a1",
+    "kanao/errors.py": "bb864c27f2ccc3b984814a8fa21956419972099d992ab5e7c16d785a4a0d7a88",
+    "kanao/keyring.py": "a6570fa286c002cd0dba48ae7fb38995f73a2df9066bc3e86ff80d77921e05dc",
+    "kanao/model.py": "1bb4bb4739c2c97a400356cca3b05347a23f4fde859181c07f03a71bf624ed99",
+    "kanao/names.py": "13fdb00b1b0c414615b07c306084c966cab1758ff7c6336aefd36b572fd5d1e0",
+    "kanao/page.py": "ac3d2e88fa614894b6278725ae2509c770fad280b4da7bac579ff6a711bd9aaa",
+    "kanao/paths.py": "41b273e98925f7051155786e51daac4e989894b8b1725839095bfd356b37d0a9",
+    "kanao/process.py": "a1438f992a499b8624937405fa93d329be332c15933965d7af0271595d22bcca",
+    "kanao/reader.py": "8f5ce12d55d860e049b671c9aeeae480ef6c0eea40c35ff3a46f92bbf50bd59b",
+    "kanao/snapshot.py": "c9e2f30455e36e5f7c10bfb87e267f27156f6807acf5cb53e00fdb8eb80a1de7",
+    "key_cache.py": "6a02bdb8ebac1ab8f18ca770262b3f49bb49a9897176cd8c1a123f46addde606",
+    "layout32.py": "f9280747d7c2ff22e2b783b96716373d17c6a2970f232b0ed05e38af1c87a309",
+    "runner.py": "fdaf1a0aeffadb22968e11102570a4c0e77d0fbdb25e4913ef639e9bc136a914",
+    "server.py": "7b4c14f8e67cff8b0f6955abfe50eefe1493bda1c386a4693112668fdd1af895",
+    "worker.py": "c1e0db230e5376f9f6a85cae39f1c99a4906e32d7aa84b21018e670525294382"
+  },
+  "prior_validation": {
+    "synthetic_tests": 28,
+    "live_local_room_metadata": true,
+    "live_local_message_read": true,
+    "closed_room_read": true,
+    "live_key_scans_in_cached_read": 0
+  },
+  "adaptation_version": "0.2.0-rc.1",
+  "validation": {
+    "release_backend_offline_tests": 12,
+    "frozen_invalid_reader_and_catalog_json": true,
+    "frozen_http_empty_profile": true,
+    "native_window_empty_profile": true,
+    "actual_reboot": false
+  }
+}

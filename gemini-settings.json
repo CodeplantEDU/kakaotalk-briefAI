@@ -1,0 +1,1 @@
+{"tools":{"core":[]},"mcp":{"allowed":[]},"hooksConfig":{"enabled":false},"telemetry":{"enabled":false},"privacy":{"usageStatisticsEnabled":false},"general":{"sessionRetention":{"enabled":true,"maxAge":"1d","maxCount":1}}}
