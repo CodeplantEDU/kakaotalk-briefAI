@@ -8,7 +8,7 @@ from version import APP_VERSION
 
 BASE = Path(__file__).resolve().parent
 ROOT_FILES = {
-    '.gitignore', 'README.md', 'RELEASE-NOTES.md', 'THIRD_PARTY_LICENSE.txt', 'THIRD_PARTY_NOTICES.md',
+    '.gitignore', 'README.md', 'RELEASE-NOTES.md', 'DISCLAIMER.md', 'THIRD_PARTY_LICENSE.txt', 'THIRD_PARTY_NOTICES.md',
     'app.py', 'app.js', 'index.html', 'style.css', 'providers.py', 'media.py', 'sending.py', 'send_win32.py', 'test_sending.py',
     'bridge_worker.py', 'worker.py', 'runtime_paths.py', 'setup_service.py',
     'desktop.py', 'worker_entry.py', 'version.py', 'summary.schema.json', 'deny-tools.toml',
@@ -60,10 +60,10 @@ def build():
     manifest = {'version': APP_VERSION, 'files': {p.relative_to(BASE).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in files}}
     manifest_path = BASE / 'SOURCE-MANIFEST.json'
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8', newline='\n')
-    target = BASE.parent / f'ChatBrief-{APP_VERSION}-source.zip'
+    target = BASE.parent / f'KakaoTalk-BriefAI-{APP_VERSION}-source.zip'
     with zipfile.ZipFile(target, 'w', compression=zipfile.ZIP_DEFLATED) as archive:
         for path in files + [manifest_path]:
-            archive.write(path, 'chatbrief/' + path.relative_to(BASE).as_posix())
+            archive.write(path, 'kakaotalk-briefAI/' + path.relative_to(BASE).as_posix())
     print(f'Source bundle: {len(files)} allowlisted files; private/runtime/build files excluded')
     return target
 

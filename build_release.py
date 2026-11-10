@@ -43,7 +43,7 @@ def assets():
     draw.line((85, 132, 145, 132), fill='white', width=10)
     image.save(folder / 'chatbrief.png')
     image.save(folder / 'chatbrief.ico', sizes=[(16,16),(32,32),(48,48),(64,64),(128,128),(256,256)])
-    (folder / 'chatbrief-bundle.json').write_text(json.dumps({'product':'ChatBrief','version':APP_VERSION,'channel':'release-candidate'}), encoding='utf-8')
+    (folder / 'chatbrief-bundle.json').write_text(json.dumps({'product':'KakaoTalk BriefAI','appId':'ChatBrief','version':APP_VERSION,'channel':'release-candidate'}), encoding='utf-8')
 
 
 def licenses():
@@ -107,7 +107,7 @@ def build():
     from bundle_dependencies import prepare
     node_runtime, webview_installer = prepare(BASE, WORK)
     data_names = ['index.html','app.js','style.css','summary.schema.json','deny-tools.toml','gemini-settings.json',
-                  'bridge_worker.py','THIRD_PARTY_LICENSE.txt','THIRD_PARTY_NOTICES.md','README.md','TESTING.md',
+                  'bridge_worker.py','THIRD_PARTY_LICENSE.txt','THIRD_PARTY_NOTICES.md','README.md','TESTING.md','DISCLAIMER.md',
                   'fonts/OFL.txt','fonts/PretendardVariable.woff2','assets/chatbrief.ico','assets/chatbrief-bundle.json','runtime-lock.json']
     data_names += ['vendor/reader/' + name for name in VENDOR_FILES]
     data = []
@@ -143,12 +143,12 @@ coll=COLLECT(exe,worker,a.binaries,a.datas,b.binaries,b.datas,strip=False,upx=Fa
         path.relative_to(bundle).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
         for path in sorted(bundle.rglob('*')) if path.is_file()}}
     (bundle / 'install-manifest.json').write_text(json.dumps(manifest, ensure_ascii=False), encoding='utf-8')
-    portable = RELEASE / f'ChatBrief-{APP_VERSION}-windows-x64-portable.zip'
+    portable = RELEASE / f'KakaoTalk-BriefAI-{APP_VERSION}-windows-x64-portable.zip'
     with zipfile.ZipFile(portable, 'w', compression=zipfile.ZIP_DEFLATED) as archive:
         for path in sorted(bundle.rglob('*')):
             if path.is_file():
                 assert not path.is_symlink() and 'private' not in path.relative_to(bundle).parts
-                archive.write(path, 'ChatBrief/' + path.relative_to(bundle).as_posix())
+                archive.write(path, 'KakaoTalk-BriefAI/' + path.relative_to(bundle).as_posix())
     # Uninstall only files that this build installs; never recursively delete a tree.
     def literal(path):
         return path.replace('$', '$$').replace('"', '$\\"').replace('/', '\\')
@@ -170,7 +170,7 @@ coll=COLLECT(exe,worker,a.binaries,a.datas,b.binaries,b.datas,strip=False,upx=Fa
     if not compiler.is_file():
         raise RuntimeError('Verified NSIS 3.13 compiler is required')
     run([compiler, '/V2', '/INPUTCHARSET', 'UTF8', f'/DAPP_VERSION={APP_VERSION}', BASE/'installer/ChatBrief.nsi'])
-    artifacts = [portable, RELEASE / f'ChatBrief-{APP_VERSION}-windows-x64-setup.exe']
+    artifacts = [portable, RELEASE / f'KakaoTalk-BriefAI-{APP_VERSION}-windows-x64-setup.exe']
     (RELEASE/'SHA256SUMS.txt').write_text(''.join(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name+'\n' for p in artifacts), encoding='utf-8')
     print('Local release candidate artifacts created; nothing uploaded.')
 

@@ -7,6 +7,7 @@ import runpy
 import sys
 import threading
 from pathlib import Path
+from version import PRODUCT_NAME
 
 
 def dispatch_worker():
@@ -21,7 +22,7 @@ def dispatch_worker():
 
 
 def show_error(message):
-    ctypes.windll.user32.MessageBoxW(None, message, '대화 브리핑', 0x10)
+    ctypes.windll.user32.MessageBoxW(None, message, PRODUCT_NAME, 0x10)
 
 
 def smoke_test(port):
@@ -73,7 +74,7 @@ def main():
     try:
         server = app.create_server(args.port, start_scheduler=not args.ui_smoke_test)
     except OSError:
-        show_error('대화 브리핑이 이미 실행 중이거나 연결 포트를 사용 중입니다. 기존 프로그램을 종료한 뒤 다시 실행해 주세요.')
+        show_error('KakaoTalk BriefAI가 이미 실행 중이거나 연결 포트를 사용 중입니다. 기존 프로그램을 종료한 뒤 다시 실행해 주세요.')
         return 1
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
@@ -90,7 +91,7 @@ def main():
             webview.settings['ALLOW_DOWNLOADS'] = True
             webview.settings['OPEN_EXTERNAL_LINKS_IN_BROWSER'] = True
             webview.settings['OPEN_DEVTOOLS_IN_DEBUG'] = False
-            window = webview.create_window(f'대화 브리핑 · {APP_VERSION} 테스트', address, width=1440, height=960,
+            window = webview.create_window(f'{PRODUCT_NAME} · {APP_VERSION} 테스트', address, width=1440, height=960,
                                            min_size=(940, 660), background_color='#f5f7fa')
             watchdog = None
             if args.ui_smoke_test:
@@ -99,8 +100,8 @@ def main():
                     import time
                     for _ in range(80):
                         try:
-                            evidence = window.evaluate_js("({home:!!document.getElementById('home-page'),settings:!!document.getElementById('settings-page'),menu:!!document.querySelector('.custom-select'),stats:document.getElementById('home-stats').children.length})")
-                            if evidence and evidence.get('home') and evidence.get('settings') and evidence.get('menu') and evidence.get('stats') == 4:
+                            evidence = window.evaluate_js("({brand:document.title==='KakaoTalk BriefAI',legal:!!document.getElementById('legal-notice'),home:!!document.getElementById('home-page'),settings:!!document.getElementById('settings-page'),menu:!!document.querySelector('.custom-select'),stats:document.getElementById('home-stats').children.length})")
+                            if evidence and evidence.get('home') and evidence.get('settings') and evidence.get('menu') and evidence.get('stats') == 4 and evidence.get('brand') and evidence.get('legal'):
                                 result.update(nativeWindow=True, dom=evidence)
                                 break
                         except Exception:
@@ -136,6 +137,6 @@ if __name__ == '__main__':
         if '--smoke-test' in sys.argv or '--reader-worker' in sys.argv or '--catalog-worker' in sys.argv:
             code = 1
         else:
-            show_error('대화 브리핑을 시작하지 못했습니다. 앱 데이터 폴더 권한과 설치 상태를 확인해 주세요.')
+            show_error('KakaoTalk BriefAI를 시작하지 못했습니다. 앱 데이터 폴더 권한과 설치 상태를 확인해 주세요.')
             code = 1
     raise SystemExit(code)

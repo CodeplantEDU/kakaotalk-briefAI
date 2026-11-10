@@ -34,4 +34,4 @@ AI 실행 파일, 인증 정보, 대화, DPAPI 키 캐시와 CLI 세션 기록�
 Python·pywin32·pywebview·pythonnet·clr_loader·cffi·bottle·typing_extensions 등 실제 빌드 의존성의 라이선스 원문과 버전 목록을 설치 폴더 `_internal/licenses`에 포함합니다.
 WebView2 SDK 원문은 Microsoft 공식 NuGet 패키지 1.0.3856.49에서 수집합니다. Windows WebView2 런타임 자체는 운영체제의 설치본을 사용합니다.
 proxy_tools의 패키지 메타데이터는 MIT로 표시하지만 공식 저장소 LICENSE.txt는 BSD 고지이므로 원문 BSD 고지와 메타데이터를 모두 보존합니다.
-배포 저장소는 CodeplantEDU/chatbrief입니다. 신규 앱 소스에 별도의 오픈소스 라이선스를 부여하지 않았습니다. 포함된 제3자 소스에는 원래의 라이선스가 계속 적용됩니다.
+배포 저장소는 CodeplantEDU/kakaotalk-briefAI입니다. 신규 앱 소스에 별도의 오픈소스 라이선스를 부여하지 않았습니다. 포함된 제3자 소스에는 원래의 라이선스가 계속 적용됩니다.

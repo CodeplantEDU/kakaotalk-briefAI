@@ -1,12 +1,17 @@
-# 대화 브리핑 0.4.2-rc.1
+# KakaoTalk BriefAI 0.4.3-rc.1
+
+카카오와 무관한 비공식 Windows 프로그램입니다. 카카오가 제작·승인·지원하지 않습니다. 계정 제한·오발송·데이터 손실·AI 오류 등 이용 결과는 사용자가 확인해야 하며, 법률이 허용하는 범위에서 보증과 개발자·배포자·기여자의 책임을 제한합니다. 법률상 배제할 수 없는 책임은 제외합니다. [전체 이용·면책 고지](https://github.com/CodeplantEDU/kakaotalk-briefAI/blob/main/DISCLAIMER.md)
 
 Windows 64비트용 공개 프리릴리스입니다.
 
 ## 설치
 
-`ChatBrief-0.4.2-rc.1-windows-x64-setup.exe`를 실행합니다. Python과 Node.js가 포함되며, WebView2가 없는 PC에서는 설치 중 인터넷 연결이 필요합니다. 포터블 버전은 ZIP을 풀고 `ChatBrief.exe`를 실행합니다. 사용할 AI는 앱 설정에서 선택 설치하고 본인 계정으로 로그인합니다.
+`KakaoTalk-BriefAI-0.4.3-rc.1-windows-x64-setup.exe`를 실행합니다. Python과 Node.js가 포함되며, WebView2가 없는 PC에서는 설치 중 인터넷 연결이 필요합니다. 포터블 버전은 ZIP을 풀고 `ChatBrief.exe`를 실행합니다. 사용할 AI는 앱 설정에서 선택 설치하고 본인 계정으로 로그인합니다.
 
 ## 변경
+
+- 표시 이름을 KakaoTalk BriefAI, 저장소를 kakaotalk-briefAI로 변경했습니다. 기존 사용자 데이터와 설정은 유지합니다.
+- 설치 화면·앱 설정·README에 비공식 연동 및 책임 제한 고지를 추가했습니다. 메시지마다 확인창을 추가하지 않습니다.
 
 - 답장 입력란 Enter 또는 직접 전송 버튼으로 추가 확인창 없이 전송합니다. Shift+Enter는 줄바꿈이며 한글 조합 중 Enter·키 반복 입력은 발송하지 않습니다.
 - 전송 뒤 대화를 갱신하고, 열어 둔 대화에서 주기적으로 새 메시지를 확인합니다. 기존 메시지와 초안·읽던 위치를 유지하며 갱신합니다.

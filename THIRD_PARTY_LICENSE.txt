@@ -3,7 +3,7 @@ Third-party notice scope
 The following original MIT notice applies to the nichirin/kanao/kakaocli
 components in vendor/reader and the portions adapted from them in
 send_win32.py and sending.py. It does not grant a license to unrelated
-new ChatBrief application code. The original notice follows unchanged.
+new KakaoTalk BriefAI application code. The original notice follows unchanged.
 
 MIT License
 

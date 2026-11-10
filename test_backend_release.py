@@ -14,6 +14,20 @@ import setup_service
 
 
 class ReleaseBackendTests(unittest.TestCase):
+    def test_disclaimer_is_public_but_arbitrary_local_files_are_not(self):
+        handler = self._scope_handler('/DISCLAIMER.md', {})
+        with patch.object(handler, 'respond') as respond:
+            handler.do_GET()
+            self.assertEqual(respond.call_args.args[0], 200)
+            self.assertEqual(respond.call_args.args[2], 'text/plain; charset=utf-8')
+            notice = respond.call_args.args[1].decode('utf-8-sig')
+            self.assertIn('비공식 프로그램', notice)
+            self.assertIn('법률상 배제할 수 없는 책임', notice)
+        handler.path = '/private/state.dpapi'
+        with patch.object(handler, 'respond') as respond:
+            handler.do_GET()
+            self.assertEqual(respond.call_args.args[0], 404)
+
     def test_install_verification_rejects_old_or_mixed_files(self):
         import hashlib
         import worker_entry

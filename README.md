@@ -1,14 +1,16 @@
-# 대화 브리핑 — Windows 로컬 프로그램
+# KakaoTalk BriefAI — Windows 로컬 프로그램
+
+> 카카오와 무관한 비공식 프로그램입니다. 카카오의 제작·승인·지원 또는 제휴를 의미하지 않습니다. 계정 제한과 오발송 등 이용 결과는 사용자가 확인해야 합니다. 보증 및 책임 제한과 법률상 예외는 [이용·면책 고지](DISCLAIMER.md)를 읽어 주세요.
 
 Windows에서 기존 카카오톡 계정의 로컬 대화를 읽고 요약·일정·할 일·답장 초안을 관리하는 프로그램입니다. 현재 배포 채널은 시험용 프리릴리스입니다.
 
-[설치 EXE 다운로드](https://github.com/CodeplantEDU/chatbrief/releases/download/v0.4.2-rc.1/ChatBrief-0.4.2-rc.1-windows-x64-setup.exe) · [전체 릴리스](https://github.com/CodeplantEDU/chatbrief/releases) · [사용 안내](TESTING.md)
+[설치 EXE 다운로드](https://github.com/CodeplantEDU/kakaotalk-briefAI/releases/download/v0.4.3-rc.1/KakaoTalk-BriefAI-0.4.3-rc.1-windows-x64-setup.exe) · [전체 릴리스](https://github.com/CodeplantEDU/kakaotalk-briefAI/releases) · [사용 안내](TESTING.md)
 
 설치 EXE에는 Python과 Node.js가 포함됩니다. WebView2가 없는 PC에서는 설치 중 인터넷으로 내려받습니다. AI 도구는 설정에서 선택 설치하고 본인 계정으로 로그인합니다.
 
 ## 실행
 
-사용자 시험은 `release/ChatBrief-0.4.2-rc.1-windows-x64-setup.exe`를 실행합니다. [사용자 테스트 안내](TESTING.md)를 함께 확인합니다.
+사용자 시험은 `release/KakaoTalk-BriefAI-0.4.3-rc.1-windows-x64-setup.exe`를 실행합니다. [사용자 테스트 안내](TESTING.md)를 함께 확인합니다.
 아래 스크립트는 개발용 소스 실행 방법이며, 설치형 사용자는 Python을 별도로 설치하지 않습니다.
 다른 PC에서는 Python 3.12 이상과 Node.js LTS를 설치하고 `설치.cmd`를 먼저 실행합니다.
 Python 의존성은 requirements.txt, 읽기 소스는 vendor/reader에 포함합니다.
@@ -31,7 +33,7 @@ AI CLI 실행 파일은 재배포하지 않고 공식 npm 패키지를 설치합
 Codex 앱의 자동화나 Windows 예약 작업은 별도로 등록하지 않았습니다.
 설치 프로그램의 창을 닫으면 서버와 예약 확인도 종료됩니다. 소스 개발 모드에서는 서버 프로세스가 실행 중이어야 합니다.
 PC 종료·절전·로그아웃 중에는 실행되지 않습니다. 서버를 다시 시작하면 놓친 실행을 한 번 확인합니다.
-시작 프로그램 등록은 하지 않았습니다. 재부팅 뒤에는 바탕화면의 대화 브리핑 테스트를 다시 엽니다.
+시작 프로그램 등록은 하지 않았습니다. 재부팅 뒤에는 바탕화면의 KakaoTalk BriefAI 테스트를 다시 엽니다.
 실패 시 무한 재시도하지 않습니다. 화면에서 실패를 확인하고 수동 실행할 수 있습니다.
 
 전체 대화 요약은 이 PC의 로컬 저장 범위, 오늘 대화 요약은 한국 시간 00:00부터 현재까지를 대상으로 합니다. 예약 요약은 첫 확인 최근 24시간, 이후 마지막 성공한 예약 확인 이후 메시지를 읽습니다.

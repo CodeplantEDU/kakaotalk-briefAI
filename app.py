@@ -379,6 +379,7 @@ class Handler(BaseHTTPRequestHandler):
                         save_state(state)
                 return self.respond(200, {**state, 'tutorialCurrentVersion': TUTORIAL_VERSION, 'token': TOKEN, 'providers': providers.installed()})
             files = {'/': ('index.html', 'text/html; charset=utf-8'), '/app.js': ('app.js', 'text/javascript; charset=utf-8'), '/style.css': ('style.css', 'text/css; charset=utf-8')}
+            files['/DISCLAIMER.md'] = ('DISCLAIMER.md', 'text/plain; charset=utf-8')
             files['/fonts/PretendardVariable.woff2'] = ('fonts/PretendardVariable.woff2', 'font/woff2')
             if self.path in files:
                 name, mime = files[self.path]

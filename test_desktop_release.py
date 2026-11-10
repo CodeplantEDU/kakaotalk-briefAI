@@ -42,6 +42,7 @@ def check(binary=None):
         assert ui.returncode == 0, ('Native window smoke', ui.returncode, ui.stderr[:300])
         loaded = json.loads((profile / 'ui-smoke-result.json').read_text(encoding='utf-8'))
         assert loaded['nativeWindow'] and not loaded['realChatRead']
+        assert loaded['dom']['brand'] and loaded['dom']['legal']
         output.append(loaded)
         print(json.dumps(output, ensure_ascii=False, indent=2))
         return output
