@@ -14,7 +14,7 @@ AI_WORKSPACE = DATA_ROOT / 'ai-workspace'
 try:
     from version import APP_VERSION as VERSION
 except ImportError:
-    VERSION = '0.4.3-rc.1'
+    VERSION = '0.4.4-rc.1'
 
 
 def _private_acl(path):

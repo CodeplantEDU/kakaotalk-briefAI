@@ -1,6 +1,6 @@
 $ErrorActionPreference = 'Stop'
 $briefRoot = $PSScriptRoot
-$briefSetup = Join-Path $briefRoot 'release/KakaoTalk-BriefAI-0.4.3-rc.1-windows-x64-setup.exe'
+$briefSetup = Join-Path $briefRoot 'release/KakaoTalk-BriefAI-0.4.4-rc.1-windows-x64-setup.exe'
 $briefPrograms = [IO.Path]::GetFullPath((Join-Path $env:LOCALAPPDATA 'Programs'))
 $briefInstall = [IO.Path]::GetFullPath((Join-Path $briefPrograms 'ChatBrief-Test'))
 if (-not $briefInstall.StartsWith($briefPrograms + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) { throw '설치 경로 경계 오류' }
@@ -19,7 +19,7 @@ try {
     if (-not (Test-Path -LiteralPath (Join-Path $briefInstall 'ChatBrief.exe'))) { throw '설치 EXE 없음' }
     if (-not (Test-Path -LiteralPath (Join-Path $briefInstall 'ChatBriefWorker.exe'))) { throw '설치 worker 없음' }
     $briefRegistry = Get-ItemProperty 'HKCU:/Software/Microsoft/Windows/CurrentVersion/Uninstall/ChatBrief-Test'
-    if ($briefRegistry.DisplayVersion -ne '0.4.3-rc.1') { throw '앱 등록 버전 불일치' }
+    if ($briefRegistry.DisplayVersion -ne '0.4.4-rc.1') { throw '앱 등록 버전 불일치' }
     $briefTempProfile = Join-Path $briefRoot '.build-work/installed-test-profile'
     $env:CHATBRIEF_DATA_DIR = $briefTempProfile
     try {

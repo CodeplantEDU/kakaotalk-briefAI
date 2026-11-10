@@ -274,9 +274,9 @@ async function refreshSetup(){
   try{
     setupState=await getSetup();
     if(Array.isArray(setupState.providers))providerList=setupState.providers;
-    $('program-version').textContent=setupState.version||'테스트 버전';
+    $('program-version').textContent=setupState.version||'버전 확인 중';
     $('program-mode').textContent=setupState.desktop?'Windows 데스크톱 앱':'이 PC의 로컬 웹 화면';
-    $('app-build-label').textContent=(setupState.version?'v'+setupState.version+' · ':'')+'테스트 버전';
+    $('app-build-label').textContent=(setupState.version?'v'+setupState.version+' · ':'')+'Windows';
     setupMessage('설치됨은 로그인 완료를 뜻하지 않습니다. 로그인 후 연결 테스트를 실행해 주세요.');
     for(const job of Array.isArray(setupState.jobs)?setupState.jobs:[]){
       if(['queued','running'].includes(job.status)&&!installJobs.has(job.provider)){installJobs.set(job.provider,job);watchInstall(job.id||job.jobId,job.provider);}

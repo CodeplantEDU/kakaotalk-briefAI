@@ -3,23 +3,23 @@ Unicode true
 !include "LogicLib.nsh"
 !include "x64.nsh"
 !ifndef APP_VERSION
-  !define APP_VERSION "0.4.3-rc.1"
+  !define APP_VERSION "0.4.4-rc.1"
 !endif
-Name "KakaoTalk BriefAI · 배포 전 테스트"
+Name "KakaoTalk BriefAI"
 OutFile "..\release\KakaoTalk-BriefAI-${APP_VERSION}-windows-x64-setup.exe"
 InstallDir "$LOCALAPPDATA\Programs\ChatBrief-Test"
 RequestExecutionLevel user
 SetCompressor /SOLID lzma
-BrandingText "KakaoTalk BriefAI ${APP_VERSION} · 로컬 테스트 빌드"
-VIProductVersion "0.4.3.1"
+BrandingText "KakaoTalk BriefAI ${APP_VERSION}"
+VIProductVersion "0.4.4.1"
 VIAddVersionKey /LANG=1042 "ProductName" "KakaoTalk BriefAI"
-VIAddVersionKey /LANG=1042 "FileDescription" "KakaoTalk BriefAI 테스트 설치 프로그램"
+VIAddVersionKey /LANG=1042 "FileDescription" "KakaoTalk BriefAI 설치 프로그램"
 VIAddVersionKey /LANG=1042 "FileVersion" "${APP_VERSION}"
 !define MUI_ABORTWARNING
 !define MUI_ICON "..\assets\chatbrief.ico"
 !define MUI_UNICON "..\assets\chatbrief.ico"
-!define MUI_WELCOMEPAGE_TITLE "KakaoTalk BriefAI 테스트 버전 설치"
-!define MUI_WELCOMEPAGE_TEXT "Windows 전용 배포 직전 테스트 빌드입니다.$\r$\n$\r$\nPython과 Node.js가 포함됩니다. 화면 엔진 WebView2가 없으면 인터넷으로 설치합니다.$\r$\n$\r$\n처음 실행하면 사용 안내가 열립니다. 사용할 AI 도구는 앱에서 설치하고 본인 계정으로 로그인합니다.$\r$\n$\r$\n기존 카카오톡 로그인은 유지합니다."
+!define MUI_WELCOMEPAGE_TITLE "KakaoTalk BriefAI 설치"
+!define MUI_WELCOMEPAGE_TEXT "Windows 64비트용 프로그램입니다.$\r$\n$\r$\nPython과 Node.js가 포함됩니다. 화면 엔진 WebView2가 없으면 인터넷으로 설치합니다.$\r$\n$\r$\n처음 실행하면 사용 안내가 열립니다. 사용할 AI 도구는 앱에서 설치하고 본인 계정으로 로그인합니다.$\r$\n$\r$\n기존 카카오톡 로그인은 유지합니다."
 !insertmacro MUI_PAGE_WELCOME
 !define MUI_LICENSEPAGE_TEXT_TOP "카카오와 무관한 비공식 프로그램입니다. 이용·면책 고지를 읽고 확인해 주세요."
 !define MUI_LICENSEPAGE_CHECKBOX
@@ -51,7 +51,7 @@ Function .onInit
   install_path_ready:
   !include "..\.build-work\uninstall-verify.nsh"
   ${IfNot} ${RunningX64}
-    MessageBox MB_OK|MB_ICONSTOP "이 테스트 빌드는 64비트 Windows 전용입니다." /SD IDOK
+    MessageBox MB_OK|MB_ICONSTOP "64비트 Windows 전용 프로그램입니다." /SD IDOK
     Abort
   ${EndIf}
 FunctionEnd
@@ -99,7 +99,7 @@ Section "설치"
   StrCmp $0 0 install_verified
   install_failed:
     SetErrorLevel 1
-    MessageBox MB_OK|MB_ICONSTOP "프로그램 파일을 모두 갱신하지 못했습니다. KakaoTalk BriefAI을 종료한 뒤 다시 설치해 주세요. 기존 사용자 데이터는 유지됩니다." /SD IDOK
+    MessageBox MB_OK|MB_ICONSTOP "프로그램 파일을 모두 갱신하지 못했습니다. KakaoTalk BriefAI를 종료한 뒤 다시 설치해 주세요. 기존 사용자 데이터는 유지됩니다." /SD IDOK
     Abort
   install_verified:
   WriteINIStr "$INSTDIR\.chatbrief-install.ini" "App" "Id" "ChatBrief-Test"
@@ -108,11 +108,16 @@ Section "설치"
   Delete "$SMPROGRAMS\대화 브리핑 테스트\대화 브리핑.lnk"
   Delete "$SMPROGRAMS\대화 브리핑 테스트\제거.lnk"
   RMDir "$SMPROGRAMS\대화 브리핑 테스트"
-  CreateDirectory "$SMPROGRAMS\KakaoTalk BriefAI 테스트"
-  CreateShortcut "$SMPROGRAMS\KakaoTalk BriefAI 테스트\KakaoTalk BriefAI.lnk" "$INSTDIR\ChatBrief.exe"
-  CreateShortcut "$SMPROGRAMS\KakaoTalk BriefAI 테스트\제거.lnk" "$INSTDIR\Uninstall.exe"
-  CreateShortcut "$DESKTOP\KakaoTalk BriefAI 테스트.lnk" "$INSTDIR\ChatBrief.exe"
-  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\ChatBrief-Test" "DisplayName" "KakaoTalk BriefAI (배포 전 테스트)"
+  Delete "$DESKTOP\KakaoTalk BriefAI 테스트.lnk"
+  Delete "$SMPROGRAMS\KakaoTalk BriefAI 테스트\KakaoTalk BriefAI.lnk"
+  Delete "$SMPROGRAMS\KakaoTalk BriefAI 테스트\제거.lnk"
+  RMDir "$SMPROGRAMS\KakaoTalk BriefAI 테스트"
+  Delete "$INSTDIR\사용자-테스트-안내.md"
+  CreateDirectory "$SMPROGRAMS\KakaoTalk BriefAI"
+  CreateShortcut "$SMPROGRAMS\KakaoTalk BriefAI\KakaoTalk BriefAI.lnk" "$INSTDIR\ChatBrief.exe"
+  CreateShortcut "$SMPROGRAMS\KakaoTalk BriefAI\제거.lnk" "$INSTDIR\Uninstall.exe"
+  CreateShortcut "$DESKTOP\KakaoTalk BriefAI.lnk" "$INSTDIR\ChatBrief.exe"
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\ChatBrief-Test" "DisplayName" "KakaoTalk BriefAI"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\ChatBrief-Test" "DisplayVersion" "${APP_VERSION}"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\ChatBrief-Test" "UninstallString" '$\"$INSTDIR\Uninstall.exe$\"'
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\ChatBrief-Test" "InstallLocation" "$INSTDIR"
@@ -149,10 +154,10 @@ Function un.onInit
 FunctionEnd
 
 Section "Uninstall"
-  Delete "$DESKTOP\KakaoTalk BriefAI 테스트.lnk"
-  Delete "$SMPROGRAMS\KakaoTalk BriefAI 테스트\KakaoTalk BriefAI.lnk"
-  Delete "$SMPROGRAMS\KakaoTalk BriefAI 테스트\제거.lnk"
-  RMDir "$SMPROGRAMS\KakaoTalk BriefAI 테스트"
+  Delete "$DESKTOP\KakaoTalk BriefAI.lnk"
+  Delete "$SMPROGRAMS\KakaoTalk BriefAI\KakaoTalk BriefAI.lnk"
+  Delete "$SMPROGRAMS\KakaoTalk BriefAI\제거.lnk"
+  RMDir "$SMPROGRAMS\KakaoTalk BriefAI"
   DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\ChatBrief-Test"
   !include "..\.build-work\uninstall-files.nsh"
   Delete "$INSTDIR\.chatbrief-install.ini"

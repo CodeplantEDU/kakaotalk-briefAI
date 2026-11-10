@@ -91,7 +91,7 @@ def main():
             webview.settings['ALLOW_DOWNLOADS'] = True
             webview.settings['OPEN_EXTERNAL_LINKS_IN_BROWSER'] = True
             webview.settings['OPEN_DEVTOOLS_IN_DEBUG'] = False
-            window = webview.create_window(f'{PRODUCT_NAME} · {APP_VERSION} 테스트', address, width=1440, height=960,
+            window = webview.create_window(f'{PRODUCT_NAME} · {APP_VERSION}', address, width=1440, height=960,
                                            min_size=(940, 660), background_color='#f5f7fa')
             watchdog = None
             if args.ui_smoke_test:

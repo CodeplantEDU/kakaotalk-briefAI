@@ -138,7 +138,7 @@ coll=COLLECT(exe,worker,a.binaries,a.datas,b.binaries,b.datas,strip=False,upx=Fa
     run([sys.executable,'-m','PyInstaller','--noconfirm','--distpath',DIST,'--workpath',WORK/'pyinstaller',spec_path])
     bundle = DIST / 'ChatBrief'
     shutil.copyfile(BASE / 'assets/chatbrief-bundle.json', bundle / 'chatbrief-bundle.json')
-    shutil.copyfile(BASE / 'TESTING.md', bundle / '사용자-테스트-안내.md')
+    shutil.copyfile(BASE / 'TESTING.md', bundle / '사용안내.md')
     manifest = {'version': APP_VERSION, 'files': {
         path.relative_to(bundle).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
         for path in sorted(bundle.rglob('*')) if path.is_file()}}
